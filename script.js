@@ -22,12 +22,20 @@ function showStoragedItems(){
 
     const itensGroup = document.createElement("ul")
     itensGroup.id = "itens-group"
-
     mainElement.appendChild(itensGroup)
 
     itensArray.map((value, index) => {
+
         const listItem = document.createElement("li")
-        listItem.textContent = `${value}`
+        const inputElement = document.createElement("input")
+        inputElement.setAttribute("type", "checkbox");
+        inputElement.id = `item-${index}`
+        listItem.appendChild(inputElement)
+        const labelItem = document.createElement("label")
+        labelItem.textContent = `${value}`
+        labelItem.setAttribute("for", `item-${index}`)
+        listItem.appendChild(labelItem)
+
         itensGroup.appendChild(listItem)
     })
 }
