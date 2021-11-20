@@ -1,7 +1,10 @@
 const itensArray = ["Vitor", "Lucas"]
 
 function showNewItem(){
-
+    const itensGroup = document.getElementById("itens-group")
+    const listItem = document.createElement("li")
+    listItem.textContent = `${itensArray[itensArray.length - 1]}`
+    itensGroup.appendChild(listItem)
 }
 
 document.getElementById("add-btn").addEventListener("click", () => {
@@ -18,6 +21,7 @@ function showStoragedItems(){
     const mainElement = document.getElementsByTagName("main")[0]
 
     const itensGroup = document.createElement("ul")
+    itensGroup.id = "itens-group"
 
     mainElement.appendChild(itensGroup)
 
