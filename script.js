@@ -34,6 +34,18 @@ function showStoragedItems(){
         const labelItem = document.createElement("label")
         labelItem.textContent = `${value}`
         labelItem.setAttribute("for", `item-${index}`)
+        labelItem.addEventListener("click", ({ target }) => {
+            if(!inputElement.checked){
+                return target.style = " text-decoration: line-through;"
+            }
+            target.style = " text-decoration: none;"
+        })
+        inputElement.addEventListener("click", ({ target }) => {
+            if(target.checked){
+                return labelItem.style = " text-decoration: line-through;"
+            }
+            labelItem.style = " text-decoration: none;"
+        })
         listItem.appendChild(labelItem)
 
         itensGroup.appendChild(listItem)
