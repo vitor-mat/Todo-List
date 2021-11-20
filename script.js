@@ -1,13 +1,13 @@
 const itensArray = ["Vitor", "Lucas", "Allef"]
 
-function removeItem(index, child){
+function removeItem(name, child){
     const itensGroup = document.getElementById("itens-group")
+
+    const index = itensArray.indexOf(name.toString())
 
     itensGroup.removeChild(child)
 
     itensArray.splice(index,1)
-
-    console.log(itensArray)
 }
 
 function showNewItem(){
@@ -37,6 +37,10 @@ function showNewItem(){
     const functionsDiv = document.createElement("div")
     const btnDel = document.createElement("button")
     btnDel.textContent = "Deletar"
+    const name = itensArray[itensArray.length - 1]
+    btnDel.addEventListener("click", () => {
+        removeItem(name, listItem)
+    })
     functionsDiv.appendChild(btnDel)
     listItem.appendChild(functionsDiv)
 
@@ -88,7 +92,7 @@ function showStoragedItems(){
         const btnDel = document.createElement("button")
         btnDel.textContent = "Deletar"
         btnDel.addEventListener("click", () => {
-            removeItem(index, listItem)
+            removeItem(value, listItem)
         })
         functionsDiv.appendChild(btnDel)
         listItem.appendChild(functionsDiv)
