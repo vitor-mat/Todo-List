@@ -3,7 +3,27 @@ const itensArray = ["Vitor", "Lucas"]
 function showNewItem(){
     const itensGroup = document.getElementById("itens-group")
     const listItem = document.createElement("li")
-    listItem.textContent = `${itensArray[itensArray.length - 1]}`
+    const inputElement = document.createElement("input")
+    inputElement.setAttribute("type", "checkbox");
+    inputElement.id = `item-${itensArray[itensArray.length - 1]}`
+    listItem.appendChild(inputElement)
+    const labelItem = document.createElement("label")
+    labelItem.textContent = `${itensArray[itensArray.length - 1]}`
+    labelItem.setAttribute("for", `item-${itensArray[itensArray.length - 1]}`)
+    labelItem.addEventListener("click", ({ target }) => {
+        if(!inputElement.checked){
+            return target.style = " text-decoration: line-through;"
+        }
+        target.style = " text-decoration: none;"
+    })
+    inputElement.addEventListener("click", ({ target }) => {
+        if(target.checked){
+            return labelItem.style = " text-decoration: line-through;"
+        }
+        labelItem.style = " text-decoration: none;"
+    })
+    listItem.appendChild(labelItem)
+
     itensGroup.appendChild(listItem)
 }
 
