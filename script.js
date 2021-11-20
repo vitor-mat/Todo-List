@@ -1,16 +1,31 @@
-const itensArray = []
+const itensArray = ["Vitor", "Lucas"]
+
+function showNewItem(){
+
+}
 
 document.getElementById("add-btn").addEventListener("click", () => {
     const inputItens = document.getElementById("input-itens")
-    const itensGroup = document.getElementById("itens-group")
+
     itensArray.push(inputItens.value)
-    alert(itensArray)
+    showNewItem()
+    console.log(itensArray)
 })
 
-/*
-     itensArray.map((value, index) => {
+
+function showStoragedItems(){
+
+    const mainElement = document.getElementsByTagName("main")[0]
+
+    const itensGroup = document.createElement("ul")
+
+    mainElement.appendChild(itensGroup)
+
+    itensArray.map((value, index) => {
         const listItem = document.createElement("li")
-        listItem.textContent = `${(index + 1)} - ${value}`
+        listItem.textContent = `${value}`
         itensGroup.appendChild(listItem)
     })
- */
+}
+
+showStoragedItems()
