@@ -68,6 +68,12 @@ function showStoragedItems(){
         })
         listItem.appendChild(labelItem)
 
+        const functionsDiv = document.createElement("div")
+        const btnDel = document.createElement("button")
+        btnDel.textContent = "Deletar"
+        functionsDiv.appendChild(btnDel)
+        listItem.appendChild(functionsDiv)
+
         itensGroup.appendChild(listItem)
     })
 }
