@@ -1,5 +1,3 @@
-const itensArray = ["Vitor", "Lucas", "Allef"]
-
 function removeItem(name, child){
     const itensGroup = document.getElementById("itens-group")
 
@@ -56,7 +54,9 @@ document.getElementById("add-btn").addEventListener("click", () => {
 })
 
 
-function showStoragedItems(){
+async function showStoragedItems(){
+
+    const itensArray = await localStorage.getItem("itemsArray") || []
 
     const mainElement = document.getElementsByTagName("main")[0]
 
