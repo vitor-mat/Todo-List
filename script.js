@@ -2,12 +2,15 @@ let itensArray = JSON.parse(localStorage.getItem("itemsArray")) || []
 console.log(typeof itensArray)
 function removeItem(name, child){
     const itensGroup = document.getElementById("itens-group")
-
-    const index = itensArray.indexOf(name.toString())
-
+    const newArray = itensArray.filter((value) => {
+        if(value.item !== name.item){
+            return true
+        }
+        return false
+    })
     itensGroup.removeChild(child)
 
-    itensArray.splice(index,1)
+    localStorage.setItem("itemsArray", JSON.stringify(newArray))
 }
 
 function showNewItem(){
@@ -18,7 +21,7 @@ function showNewItem(){
     inputElement.id = `item-${itensArray[itensArray.length - 1]}`
     listItem.appendChild(inputElement)
     const labelItem = document.createElement("label")
-    labelItem.textContent = `${itensArray[itensArray.length - 1]}`
+    labelItem.textContent = `${itensArray[itensArray.length - 1].item}`
     labelItem.setAttribute("for", `item-${itensArray[itensArray.length - 1]}`)
     labelItem.addEventListener("click", ({ target }) => {
         if(!inputElement.checked){
@@ -32,6 +35,7 @@ function showNewItem(){
         }
         labelItem.style = " text-decoration: none;"
     })
+
     listItem.appendChild(labelItem)
 
     const functionsDiv = document.createElement("div")
@@ -40,6 +44,14 @@ function showNewItem(){
     const name = itensArray[itensArray.length - 1]
     btnDel.addEventListener("click", () => {
         removeItem(name, listItem)
+    })
+    inputElement.addEventListener("click", ({ target }) => {
+        if(!target.checked){
+            name.checked = false
+            localStorage.setItem("itemsArray", JSON.stringify(itensArray))
+            return;
+        }
+        name.checked = true
         localStorage.setItem("itemsArray", JSON.stringify(itensArray))
     })
     functionsDiv.appendChild(btnDel)
@@ -51,7 +63,11 @@ function showNewItem(){
 document.getElementById("add-btn").addEventListener("click", () => {
     const inputItens = document.getElementById("input-itens")
 
-    itensArray.push(inputItens.value)
+    itensArray.push({
+        item: inputItens.value,
+        checked: false
+    })
+    localStorage.removeItem("itemsArray");
     localStorage.setItem("itemsArray", JSON.stringify(itensArray))
     showNewItem()
 })
@@ -71,9 +87,18 @@ function showStoragedItems(){
         const inputElement = document.createElement("input")
         inputElement.setAttribute("type", "checkbox");
         inputElement.id = `item-${index}`
+        inputElement.addEventListener("click", ({ target }) => {
+            if(!target.checked){
+                value.checked = false
+                localStorage.setItem("itemsArray", JSON.stringify(itensArray))
+                return;
+            }
+            value.checked = true
+            localStorage.setItem("itemsArray", JSON.stringify(itensArray))
+        })
         listItem.appendChild(inputElement)
         const labelItem = document.createElement("label")
-        labelItem.textContent = `${value}`
+        labelItem.textContent = `${value.item}`
         labelItem.setAttribute("for", `item-${index}`)
         labelItem.addEventListener("click", ({ target }) => {
             if(!inputElement.checked){
@@ -94,7 +119,6 @@ function showStoragedItems(){
         btnDel.textContent = "Deletar"
         btnDel.addEventListener("click", () => {
             removeItem(value, listItem)
-            localStorage.setItem("itemsArray", JSON.stringify(itensArray))
         })
         functionsDiv.appendChild(btnDel)
         listItem.appendChild(functionsDiv)
