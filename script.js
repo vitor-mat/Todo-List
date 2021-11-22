@@ -63,16 +63,20 @@ function showNewItem(){
 document.getElementById("add-btn").addEventListener("click", () => {
     const inputItens = document.getElementById("input-itens")
 
-    itensArray.push({
-        item: inputItens.value,
-        checked: false,
-        id: (Math.random()*100000000).toFixed(2)
-    })
-    localStorage.removeItem("itemsArray");
-    localStorage.setItem("itemsArray", JSON.stringify(itensArray))
-    showNewItem()
-    inputItens.value = ""
-    inputItens.focus()
+    if(inputItens.length){
+        itensArray.push({
+            item: inputItens.value,
+            checked: false,
+            id: (Math.random()*100000000).toFixed(2)
+        })
+        localStorage.removeItem("itemsArray");
+        localStorage.setItem("itemsArray", JSON.stringify(itensArray))
+        showNewItem()
+        inputItens.value = ""
+        inputItens.focus()
+        return;
+    }
+    alert("Error: Campo de Entrada Vazio!!")
 })
 
 
