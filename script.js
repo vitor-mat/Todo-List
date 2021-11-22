@@ -72,6 +72,7 @@ document.getElementById("add-btn").addEventListener("click", () => {
     localStorage.setItem("itemsArray", JSON.stringify(itensArray))
     showNewItem()
     inputItens.value = ""
+    inputItens.focus()
 })
 
 
