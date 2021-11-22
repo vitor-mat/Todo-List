@@ -65,7 +65,8 @@ document.getElementById("add-btn").addEventListener("click", () => {
 
     itensArray.push({
         item: inputItens.value,
-        checked: false
+        checked: false,
+        id: (Math.random()*100000000).toFixed(2)
     })
     localStorage.removeItem("itemsArray");
     localStorage.setItem("itemsArray", JSON.stringify(itensArray))
