@@ -40,6 +40,7 @@ function showNewItem(){
     const name = itensArray[itensArray.length - 1]
     btnDel.addEventListener("click", () => {
         removeItem(name, listItem)
+        localStorage.setItem("itemsArray", JSON.stringify(itensArray))
     })
     functionsDiv.appendChild(btnDel)
     listItem.appendChild(functionsDiv)
@@ -93,6 +94,7 @@ function showStoragedItems(){
         btnDel.textContent = "Deletar"
         btnDel.addEventListener("click", () => {
             removeItem(value, listItem)
+            localStorage.setItem("itemsArray", JSON.stringify(itensArray))
         })
         functionsDiv.appendChild(btnDel)
         listItem.appendChild(functionsDiv)
