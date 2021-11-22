@@ -25,15 +25,15 @@ function showNewItem(){
     labelItem.setAttribute("for", `item-${itensArray[itensArray.length - 1]}`)
     labelItem.addEventListener("click", ({ target }) => {
         if(!inputElement.checked){
-            return target.style = " text-decoration: line-through;"
+            return target.style = " text-decoration: line-through; color: rgb(245, 73, 73)"
         }
-        target.style = " text-decoration: none;"
+        target.style = " text-decoration: none; color: #000)"
     })
     inputElement.addEventListener("click", ({ target }) => {
         if(target.checked){
-            return labelItem.style = " text-decoration: line-through;"
+            return labelItem.style = " text-decoration: line-through; color: rgb(245, 73, 73)"
         }
-        labelItem.style = " text-decoration: none;"
+        labelItem.style = " text-decoration: none; #000"
     })
 
     listItem.appendChild(labelItem)
