@@ -71,6 +71,7 @@ document.getElementById("add-btn").addEventListener("click", () => {
     localStorage.removeItem("itemsArray");
     localStorage.setItem("itemsArray", JSON.stringify(itensArray))
     showNewItem()
+    inputItens.value = ""
 })
 
 
