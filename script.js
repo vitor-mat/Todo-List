@@ -3,7 +3,7 @@ console.log(typeof itensArray)
 function removeItem(name, child){
     const itensGroup = document.getElementById("itens-group")
     const newArray = itensArray.filter((value) => {
-        if(value.item !== name.item){
+        if(value.id !== name.id){
             return true
         }
         return false
