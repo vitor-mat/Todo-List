@@ -1,3 +1,5 @@
+let itensArray = JSON.parse(localStorage.getItem("itemsArray")) || []
+console.log(typeof itensArray)
 function removeItem(name, child){
     const itensGroup = document.getElementById("itens-group")
 
@@ -49,14 +51,12 @@ document.getElementById("add-btn").addEventListener("click", () => {
     const inputItens = document.getElementById("input-itens")
 
     itensArray.push(inputItens.value)
+    localStorage.setItem("itemsArray", JSON.stringify(itensArray))
     showNewItem()
-    console.log(itensArray)
 })
 
 
-async function showStoragedItems(){
-
-    const itensArray = await localStorage.getItem("itemsArray") || []
+function showStoragedItems(){
 
     const mainElement = document.getElementsByTagName("main")[0]
 
