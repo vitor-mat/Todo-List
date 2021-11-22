@@ -106,11 +106,15 @@ function showStoragedItems(){
             }
             target.style = " text-decoration: none;"
         })
+        if(value.checked){
+            inputElement.checked = true
+            labelItem.style = "text-decoration: line-through; color: rgb(245, 73, 73)"
+        }
         inputElement.addEventListener("click", ({ target }) => {
             if(target.checked){
-                return labelItem.style = " text-decoration: line-through;"
+                return labelItem.style = "text-decoration: line-through;"
             }
-            labelItem.style = " text-decoration: none;"
+            labelItem.style = "text-decoration: none;"
         })
         listItem.appendChild(labelItem)
 
