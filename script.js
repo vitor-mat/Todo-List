@@ -1,5 +1,4 @@
 let itensArray = JSON.parse(localStorage.getItem("itemsArray")) || []
-console.log(typeof itensArray)
 function removeItem(name, child){
     const itensGroup = document.getElementById("itens-group")
     const newArray = itensArray.filter((value) => {
@@ -8,8 +7,9 @@ function removeItem(name, child){
         }
         return false
     })
+    itensArray = newArray;
     itensGroup.removeChild(child)
-
+    console.log(newArray)
     localStorage.setItem("itemsArray", JSON.stringify(newArray))
 }
 
