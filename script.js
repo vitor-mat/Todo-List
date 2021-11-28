@@ -18,6 +18,7 @@ function showNewItem(){
     const listItem = document.createElement("li")
     const inputElement = document.createElement("input")
     inputElement.setAttribute("type", "checkbox");
+    inputElement.style = "accent-color: #f54949";
     inputElement.id = `item-${itensArray[itensArray.length - 1]}`
     listItem.appendChild(inputElement)
     const labelItem = document.createElement("label")
@@ -93,6 +94,7 @@ function showStoragedItems(){
         const listItem = document.createElement("li")
         const inputElement = document.createElement("input")
         inputElement.setAttribute("type", "checkbox");
+        inputElement.style = "accent-color: #f54949";
         inputElement.id = `item-${index}`
         inputElement.addEventListener("click", ({ target }) => {
             if(!target.checked){

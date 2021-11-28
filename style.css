@@ -109,12 +109,12 @@ main{
 
 
 #itens-group li:hover label{
-    color: rgb(245, 73, 73);
+    color: #f54949;
 }
 
 
 #itens-group li div button{
-    background: rgb(245, 73, 73);
+    background: #f54949;
     color: #fff;
     border: none;
     width: 70px;
