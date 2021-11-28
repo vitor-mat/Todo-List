@@ -63,7 +63,7 @@ function showNewItem(){
 document.getElementById("add-btn").addEventListener("click", () => {
     const inputItens = document.getElementById("input-itens")
 
-    if(inputItens.length){
+    if(inputItens.value.length){
         itensArray.push({
             item: inputItens.value,
             checked: false,
