@@ -141,3 +141,25 @@ function showStoragedItems(){
 }
 
 showStoragedItems()
+
+document.addEventListener("keydown", e => {
+    
+    const inputItens = document.getElementById("input-itens")
+
+    if(e.key === "Enter" && document.activeElement.id === "input-itens"){
+        if(inputItens.value.length){
+            itensArray.push({
+                item: inputItens.value,
+                checked: false,
+                id: (Math.random()*100000000).toFixed(2)
+            })
+            localStorage.removeItem("itemsArray");
+            localStorage.setItem("itemsArray", JSON.stringify(itensArray))
+            showNewItem()
+            inputItens.value = ""
+            inputItens.focus()
+            return;
+        }
+        alert("Error: Campo de Entrada Vazio!!")
+    }
+})
