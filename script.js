@@ -112,9 +112,11 @@ function showStoragedItems(){
         labelItem.setAttribute("for", `item-${index}`)
         labelItem.addEventListener("click", ({ target }) => {
             if(!inputElement.checked){
-                return target.style = " text-decoration: line-through;"
+                target.style = "text-decoration: line-through; color: rgb(245, 73, 73)"
+                console.log(target)
+                return;
             }
-            target.style = " text-decoration: none;"
+            target.style = "text-decoration: none; color: rgb(0, 0, 0)"
         })
         if(value.checked){
             inputElement.checked = true
@@ -122,9 +124,9 @@ function showStoragedItems(){
         }
         inputElement.addEventListener("click", ({ target }) => {
             if(target.checked){
-                return labelItem.style = "text-decoration: line-through;"
+                return labelItem.style = "text-decoration: line-through; color: rgb(245, 73, 73)"
             }
-            labelItem.style = "text-decoration: none;"
+            labelItem.style = "text-decoration: none; color: rgb(0, 0, 0)"
         })
         divItems.appendChild(labelItem)
         listItem.appendChild(divItems)
