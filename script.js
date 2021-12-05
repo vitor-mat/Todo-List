@@ -16,11 +16,12 @@ function removeItem(name, child){
 function showNewItem(){
     const itensGroup = document.getElementById("itens-group")
     const listItem = document.createElement("li")
+    const divItems = document.createElement("div")
     const inputElement = document.createElement("input")
     inputElement.setAttribute("type", "checkbox");
     inputElement.style = "accent-color: #f54949";
     inputElement.id = `item-${itensArray[itensArray.length - 1]}`
-    listItem.appendChild(inputElement)
+    divItems.appendChild(inputElement)
     const labelItem = document.createElement("label")
     labelItem.textContent = `${itensArray[itensArray.length - 1].item}`
     labelItem.setAttribute("for", `item-${itensArray[itensArray.length - 1]}`)
@@ -37,9 +38,8 @@ function showNewItem(){
         labelItem.style = " text-decoration: none; #000"
     })
 
-    listItem.appendChild(labelItem)
+    divItems.appendChild(labelItem)
 
-    const functionsDiv = document.createElement("div")
     const btnDel = document.createElement("button")
     btnDel.textContent = "Deletar"
     const name = itensArray[itensArray.length - 1]
@@ -55,8 +55,8 @@ function showNewItem(){
         name.checked = true
         localStorage.setItem("itemsArray", JSON.stringify(itensArray))
     })
-    functionsDiv.appendChild(btnDel)
-    listItem.appendChild(functionsDiv)
+    listItem.appendChild(divItems)
+    listItem.appendChild(btnDel)
 
     itensGroup.appendChild(listItem)
 }
@@ -92,10 +92,12 @@ function showStoragedItems(){
     itensArray.map((value, index) => {
 
         const listItem = document.createElement("li")
+        const divItems = document.createElement("div")
         const inputElement = document.createElement("input")
         inputElement.setAttribute("type", "checkbox");
         inputElement.style = "accent-color: #f54949";
         inputElement.id = `item-${index}`
+        divItems.appendChild(inputElement)
         inputElement.addEventListener("click", ({ target }) => {
             if(!target.checked){
                 value.checked = false
@@ -105,7 +107,6 @@ function showStoragedItems(){
             value.checked = true
             localStorage.setItem("itemsArray", JSON.stringify(itensArray))
         })
-        listItem.appendChild(inputElement)
         const labelItem = document.createElement("label")
         labelItem.textContent = `${value.item}`
         labelItem.setAttribute("for", `item-${index}`)
@@ -125,16 +126,15 @@ function showStoragedItems(){
             }
             labelItem.style = "text-decoration: none;"
         })
-        listItem.appendChild(labelItem)
+        divItems.appendChild(labelItem)
+        listItem.appendChild(divItems)
 
-        const functionsDiv = document.createElement("div")
         const btnDel = document.createElement("button")
         btnDel.textContent = "Deletar"
         btnDel.addEventListener("click", () => {
             removeItem(value, listItem)
         })
-        functionsDiv.appendChild(btnDel)
-        listItem.appendChild(functionsDiv)
+        listItem.appendChild(btnDel)
 
         itensGroup.appendChild(listItem)
     })
