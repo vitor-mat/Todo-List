@@ -1,4 +1,5 @@
 let itensArray = JSON.parse(localStorage.getItem("itemsArray")) || []
+
 function removeItem(name, child){
     const itensGroup = document.getElementById("itens-group")
     const newArray = itensArray.filter((value) => {
@@ -9,22 +10,23 @@ function removeItem(name, child){
     })
     itensArray = newArray;
     itensGroup.removeChild(child)
-    console.log(newArray)
     localStorage.setItem("itemsArray", JSON.stringify(newArray))
 }
 
 function showNewItem(){
+
     const itensGroup = document.getElementById("itens-group")
     const listItem = document.createElement("li")
     const divItems = document.createElement("div")
     const inputElement = document.createElement("input")
     inputElement.setAttribute("type", "checkbox");
     inputElement.style = "accent-color: #f54949";
-    inputElement.id = `item-${itensArray[itensArray.length - 1]}`
+    inputElement.id = `item-${itensArray[itensArray.length - 1].id}`
     divItems.appendChild(inputElement)
     const labelItem = document.createElement("label")
     labelItem.textContent = `${itensArray[itensArray.length - 1].item}`
-    labelItem.setAttribute("for", `item-${itensArray[itensArray.length - 1]}`)
+    labelItem.setAttribute("for", `item-${itensArray[itensArray.length - 1].id}`)
+
     labelItem.addEventListener("click", ({ target }) => {
         if(!inputElement.checked){
             return target.style = " text-decoration: line-through; color: rgb(245, 73, 73)"
@@ -113,7 +115,6 @@ function showStoragedItems(){
         labelItem.addEventListener("click", ({ target }) => {
             if(!inputElement.checked){
                 target.style = "text-decoration: line-through; color: rgb(245, 73, 73)"
-                console.log(target)
                 return;
             }
             target.style = "text-decoration: none; color: rgb(0, 0, 0)"
